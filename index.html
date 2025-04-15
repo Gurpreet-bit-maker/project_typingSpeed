@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      textarea {
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <button>Start</button>
+    <div id="textBox">
+      <p id="demo"></p>
+      <textarea name="" id="textArea"></textarea>
+      <p id="time"></p>
+      <p id="wps"></p>
+    </div>
+    <script>
+      let button = document.querySelector("button");
+      let peraGraph = document.querySelector("#demo");
+      let textArea = document.querySelector("textarea");
+      let timeDisplay = document.querySelector("#time");
+      let emptyArray = [];
+      let time;
+      let second;
+      let final = 1;
+      let stoptime;
+      let counter = 0;
+
+      let sentance = [
+        "the internet has become and essential part of our  time with real-world activities is very important.",
+      ];
+      button.addEventListener("click", function () {
+        peraGraph.textContent = "";
+        let randomText = Math.floor(Math.random() * sentance.length);
+        peraGraph.textContent = sentance[randomText].toLocaleLowerCase();
+        console.log(sentance[randomText]);
+
+        stoptime = setInterval(() => {
+          timeDisplay.textContent = final++;
+        }, 1000);
+
+        document.querySelector("#wps").textContent = "";
+        console.log(peraGraph.textContent, "jell");
+      });
+
+      textArea.addEventListener("input", function (e) {
+        let textAreaWriten = textArea.value.split("");
+        let text = sentance[0].split("");
+        for (let i = 0; i < textArea.value.length; i++) {
+          if (text[i] == e.target.value) {
+            console.log("done");
+          } else {
+            console.log("fatel");
+          }
+        }
+
+        console.log(textAreaWriten);
+        console.log(emptyArray);
+
+        if (final == 60) {
+          clearInterval(stoptime);
+          alert(`hello ${final - 1}`);
+          timeDisplay.textContent = `time is S${final - 1}`;
+          let Words = Number(textArea.value.length);
+          let totalWords = Words / 5;
+          let minut = final / 60;
+          let result = totalWords / minut;
+          document.querySelector("#wps").textContent = `wpm ${result}`;
+        }
+      });
+    </script>
+  </body>
+</html>
+
