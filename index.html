@@ -49,12 +49,14 @@
 
       textArea.addEventListener("input", function (e) {
         let textAreaWriten = textArea.value.split("");
-        let text = sentance[0].split("");
-        for (let i = 0; i < textArea.value.length; i++) {
-          if (text[i] == e.target.value) {
-            console.log("done");
-          } else {
-            console.log("fatel");
+        let text = sentance[0].split(" ");
+        // console.log(textAreaWriten[textAreaWriten.length-1]);
+        emptyArray.push(textArea.value);
+        let lastCorrecter = emptyArray[emptyArray.length - 1].split(" ");
+        for (let i = 0; i < lastCorrecter.length; i++) {
+          if (lastCorrecter[lastCorrecter.length - 1] == text[i]) {
+            // console.log(lastCorrecter);
+            alert(`good ${i}`);
           }
         }
 
